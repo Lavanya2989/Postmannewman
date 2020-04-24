@@ -1,0 +1,13 @@
+Step1 : Installed NodeJS
+NodeJS Version : v10.16.0
+npm version : 6.9.0
+
+Step2 : Installed newman
+$ npm install -g newman
+newman version : 4.5.0
+
+Step3 : newman-reporter-html
+npm install -g newman-reporter-html Example : newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv 21 -r html
+
+Step4 : newman-reporter-htmlextra
+npm install -g newman-reporter-htmlextra Example : newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv 21 -r htmlextra

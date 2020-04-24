@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "35f74154-ba3c-4f03-be49-0da4f8292dec",
+		"name": "Billing Order API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create billing order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6dd1b612-0630-4102-8eb1-5c5762017e4b",
+						"exec": [
+							"//After body / Test",
+							"",
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"",
+							"fname = pm.environment.get(\"firstName\");",
+							"inum = pm.environment.get(\"itemNumber\");",
+							"",
+							"var responseData = pm.response.json();",
+							"id = responseData.id;",
+							"pm.environment.get(\"id\", id);",
+							"",
+							"pm.test(\"validating data\", function () {",
+							"    ",
+							"    pm.expect(responseData.firstName).to.eql(fname);",
+							"    pm.expect(responseData.itemNumber).to.eql(inum);",
+							"    ",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d820f7b-f2a8-42d1-86b2-1a473574d686",
+						"exec": [
+							"//Before body ",
+							"",
+							"//pm.environment.set(\"firstname\", \"amit\");",
+							"//pm.environment.set(\"i\", 10);",
+							"",
+							"//ing i = 10;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"addressLine1\": \"{{addressLine1}}\",\r\n  \"addressLine2\": \"{{addressLine2}}\",\r\n  \"city\": \"{{city}}\",\r\n  \"comment\": \"{{comment}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"firstName\": \"{{firstName}}\",\r\n   \"itemNumber\":{{itemNumber}},\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"phone\": \"{{phone}}\",\r\n  \"state\": \"AL\",\r\n  \"zipCode\": \"{{zipCode}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseurl}}:{{port}}/BillingOrder",
+					"protocol": "http",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"BillingOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read billing order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "021ad988-46ba-457d-87e1-7df8f98c54ea",
+						"exec": [
+							"",
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"",
+							"fname = pm.environment.get(\"firstName\");",
+							"inum = pm.environment.get(\"itemNumber\");",
+							"",
+							"var responseData = pm.response.json();",
+							"",
+							"pm.test(\"validating data\", function () {",
+							"    ",
+							"    pm.expect(responseData.firstName).to.eql(fname);",
+							"    pm.expect(responseData.itemNumber).to.eql(inum);",
+							"    ",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseurl}}:{{port}}/BillingOrder",
+					"protocol": "http",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"BillingOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update billing order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92efd6f7-5047-4eec-9677-d73796d35469",
+						"exec": [
+							"fname = pm.environment.get(\"firstName\");",
+							"inum = pm.environment.get(\"newitemNumber\");",
+							"",
+							"var responseData = pm.response.json();",
+							"",
+							"pm.test(\"validating data\", function () {",
+							"    ",
+							"    pm.expect(responseData.firstName).to.eql(fname);",
+							"    pm.expect(responseData.newitemNumber).to.eql(inum);",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3d4d1980-8501-49f6-980a-f4662b23070d",
+						"exec": [
+							"//pm.environment.set(\"i\", 1000);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"addressLine1\": \"{{addressLine1}}\",\r\n  \"addressLine2\": \"{{addressLine2}}\",\r\n  \"city\": \"{{city}}\",\r\n  \"comment\": \"{{comment}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"firstName\": \"{{firstName}}\",\r\n   \"itemNumber\":{{newitemNumber}},\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"phone\": \"{{phone}}\",\r\n  \"state\": \"AL\",\r\n  \"zipCode\": \"{{zipCode}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseurl}}:{{port}}/BillingOrder",
+					"protocol": "http",
+					"host": [
+						"{{baseurl}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"BillingOrder"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
