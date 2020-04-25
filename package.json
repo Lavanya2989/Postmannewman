@@ -1,0 +1,10 @@
+{
+"name":"postman-newman-jenkins",
+"description":"project for storing postman test"
+}
+"scripts":{
+"test1" :"newman run "Billing Order API Tests.postman_collection.json" -e BO1.postman_environment.json -d data.csv"
+"report":"newman run "Billing Order API Tests.postman_collection.json" -e BO1.postman_environment.json -d data.csv -r html"
+"report1":"newman run "Billing Order API Tests.postman_collection.json" -e BO1.postman_environment.json -d data.csv -r cli,junit --reporter-html-template api_tests/templates/htmlreqres.hbs --reporter-html-export report.html --reporter-junit-export newman.xml",
+}
+"author"="Lavanya"
